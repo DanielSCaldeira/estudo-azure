@@ -21,8 +21,7 @@
     Certificações Microsoft
     </a>
 &emsp; | &emsp;
-    <a href="https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE2PjDI)
-    [Documentação GITHUB](https://docs.github.com/pt/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#images" target="_blank"> 
+    <a href="https://docs.github.com/pt/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#images" target="_blank"> 
     Documentação git hub
     </a>
 </p>
@@ -226,3 +225,37 @@ Opções de gerenciamento na nuvem:
 </a>
 
 ## Descrever os principais componentes arquitetônicos do Azure
+
+#### Conta gratuita do Azure
+
+| OPÇÃO                                    | COMUM       | ESTUDANTE                   |
+| ---------------------------------------- | ----------- | --------------------------- |
+| Acesso a produtos populares por 12 meses | X           | X                           |
+| Um crédito                               | 30 dias     | US$ 100 por 12 meses        |
+| Acesso ferramentas                       | 25 produtos | Desenvolvedores de software |
+
+</br>
+
+### Microsoft Learn
+
+Microsoft Learn são exercicios que utilizam da `área restrita` como assinatura temporaria.
+A `área restrita` pode ser utilizada com a assinatura pessoal, deve ser usado preferencialmente para criar e testar recursos do Azure sem gerar custos.
+
+* A maioria dos comandos específicos do Azure começará com as letras az.
+* O modo interativo possibilita preenchimento automático, descrições de comando e até mesmo exemplos. 
+* Para usar o modo interativo da CLI do Azure:
+```
+az interactive
+```
+* O modo interativo é configurado especificamente para o Azure, portanto, você não precisa inserir az para iniciar um comando
+
+</br>
+
+Os principais componentes da arquitetura do Azure podem ser divididos em dois agrupamentos principais: a infraestrutura física e a infraestrutura de gerenciamento.
+
+* Infraestrutura física:  são datacenters com, racks com energia, refrigeração e infraestrutura de rede dedicadas.São agrupados em Regiões do Azure ou em Zonas de Disponibilidade para obter resiliência e confiabilidade.
+    * Regiões do Azure: Uma região é uma área geográfica do planeta que contém pelo menos um data center ou vários conectado a uma rede de baixa latência. Usa controle inteligente de recursos para balancear cargas de trabalho nas regiões.
+
+* As zonas de disponibilidade: são datacenters separados fisicamente, equipados com energia, resfriamento e rede independentes. Se uma zona ficar inativa, as outras continuarão funcionando. As zonas são conectadas por redes privadas de alta velocidade.
+
+    * Tenha em mente que pode haver um custo para duplicar seus serviços e transferir dados entre zonas de disponibilidade.
