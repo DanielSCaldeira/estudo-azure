@@ -241,21 +241,53 @@ Opções de gerenciamento na nuvem:
 Microsoft Learn são exercicios que utilizam da `área restrita` como assinatura temporaria.
 A `área restrita` pode ser utilizada com a assinatura pessoal, deve ser usado preferencialmente para criar e testar recursos do Azure sem gerar custos.
 
-* A maioria dos comandos específicos do Azure começará com as letras az.
-* O modo interativo possibilita preenchimento automático, descrições de comando e até mesmo exemplos. 
-* Para usar o modo interativo da CLI do Azure:
+- A maioria dos comandos específicos do Azure começará com as letras az.
+- O modo interativo possibilita preenchimento automático, descrições de comando e até mesmo exemplos.
+- Para usar o modo interativo da CLI do Azure:
+
 ```
 az interactive
 ```
-* O modo interativo é configurado especificamente para o Azure, portanto, você não precisa inserir az para iniciar um comando
+
+- O modo interativo é configurado especificamente para o Azure, portanto, você não precisa inserir az para iniciar um comando
 
 </br>
 
 Os principais componentes da arquitetura do Azure podem ser divididos em dois agrupamentos principais: a infraestrutura física e a infraestrutura de gerenciamento.
 
-* Infraestrutura física:  são datacenters com, racks com energia, refrigeração e infraestrutura de rede dedicadas.São agrupados em Regiões do Azure ou em Zonas de Disponibilidade para obter resiliência e confiabilidade.
-    * Regiões do Azure: Uma região é uma área geográfica do planeta que contém pelo menos um data center ou vários conectado a uma rede de baixa latência. Usa controle inteligente de recursos para balancear cargas de trabalho nas regiões.
+- Infraestrutura física: são datacenters com, racks com energia, refrigeração e infraestrutura de rede dedicadas.São agrupados em Regiões do Azure ou em Zonas de Disponibilidade para obter resiliência e confiabilidade.
+  - Regiões do Azure: Uma região é uma área geográfica do planeta que contém pelo menos um data center ou vários conectado a uma rede de baixa latência. Usa controle inteligente de recursos para balancear cargas de trabalho nas regiões.
 
-* As zonas de disponibilidade: são datacenters separados fisicamente, equipados com energia, resfriamento e rede independentes. Se uma zona ficar inativa, as outras continuarão funcionando. As zonas são conectadas por redes privadas de alta velocidade.
+</br>
 
-    * Tenha em mente que pode haver um custo para duplicar seus serviços e transferir dados entre zonas de disponibilidade.
+### As zonas de disponibilidade
+
+As zonas de disponibilidade: são datacenters separados fisicamente, equipados com energia, resfriamento e rede independentes. Se uma zona ficar inativa, as outras continuarão funcionando. As zonas são conectadas por redes privadas de alta velocidade.
+
+- Tenha em mente que pode haver um custo para duplicar seus serviços e transferir dados entre zonas de disponibilidade.
+- São destinadas principalmente para:
+  - VMs, discos gerenciados, balanceadores de carga e bancos de dados SQL
+  - Enquadram-se em três categorias:
+    - Serviços em zonas: você fixa o recurso a uma zona específica (por exemplo, VMs, discos gerenciados, endereços IP).
+    - Serviços com redundância de zona: a plataforma replica automaticamente entre zonas (por exemplo, armazenamento com redundância de zona, Banco de Dados SQL).
+    - Serviços não regionais: os serviços estão sempre disponíveis em geografias do Azure e são resilientes a interrupções em toda a zona, bem como a interrupções em toda a região.
+
+### Pares de regiões
+
+- A maioria das regiões do Azure é emparelhada com outra região na mesma geografia, com pelo menos 300 milhas (480 km) de distância, permitindo a replicação de recursos em uma geografia.
+- Essa abordagem ajuda a reduzir a probabilidade de interrupções devido a eventos como desastres naturais, conflitos civis, quedas de energia ou interrupções de rede física afetarem toda uma região.
+- Se uma região em um par de regiões for afetada por um desastre natural, os serviços farão failover automaticamente para a outra região nesse par.
+
+### Vantagens adicionais pares de regiões
+
+- Em caso de interrupção do Azure, uma região de cada par é priorizada para restauração rápida dos aplicativos.
+- As atualizações são distribuídas para regiões emparelhadas uma por vez, minimizando o tempo de inatividade.
+- Os dados permanecem na mesma geografia que seu par, exceto no Sul do Brasil.
+
+### Regiões soberanas
+
+Regiões soberanas são instâncias do Azure isoladas da instância principal do Azure. Talvez seja necessário usar uma região soberana para fins legais ou de conformidade.
+
+</br>
+
+## Descrever a infraestrutura de gerenciamento do Azure
