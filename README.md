@@ -66,6 +66,9 @@ Segurança física, energia, resfriamento e conectividade de rede são responsab
   - Cenários comuns em que o IaaS faz sentido:
     - Migração lift-and-shift
     - Teste e desenvolvimento
+    - Controle total sobre o SO (sistema operacional).
+    - Capacidade para executar um software personalizado.
+    - Usar configurações personalizadas de hospedagem.
   - Migração lift-and-shift:
     - Recursos de nuvem semelhantes aos do datacenter local
     - Migração dos elementos em execução local para execução na infraestrutura IaaS
@@ -75,10 +78,12 @@ Segurança física, energia, resfriamento e conectividade de rede são responsab
     - Ativação ou desativação rápida dos diferentes ambientes com uma estrutura de IaaS
     - Manutenção do controle completo sobre os ambientes
 
+Obs: `Conjuntos de Dimensionamento de Máquinas Virtuais` automatizam a criação e gerenciamento de grupos de VMs idênticas com balanceamento de carga quando é utilizado o IaaS.
+
 </br>
 
 - PaaS (plataforma como serviço) está situado entre o IaaS e o SaaS e compartilha a responsabilidade entre o provedor de nuvem e o consumidor. O provedor de nuvem mantém os sistemas operacionais, bancos de dados e ferramentas de desenvolvimento.Dependendo da configuração, o provedor de nuvem ou o consumidor pode ser responsável pelas configurações de rede e conectividade, segurança de rede e aplicativo e infraestrutura de diretório.
-  - Cenários comuns em que o IaaS faz sentido:
+  - Cenários comuns em que o PaaS faz sentido:
     - Estrutura de desenvolvimento:
       - O PaaS fornece uma estrutura para desenvolvedores criarem ou personalizarem aplicativos baseados em nuvem.
       - Reduz a quantidade de codificação necessária, pois os desenvolvedores podem usar componentes de software internos.
@@ -86,6 +91,8 @@ Segurança física, energia, resfriamento e conectividade de rede são responsab
     - Análise ou business intelligence:
       - As ferramentas fornecidas como serviço com o PaaS permitem que as organizações analisem e minerem dados.
       - Encontrando insights e padrões e prevendo resultados para aprimorar previsões, decisões de design de produto, retornos sobre investimentos e outras decisões de negócios.
+
+Obs: "As `Instâncias de Contêiner do Azure` oferecem uma maneira simples e rápida de executar contêineres no Azure sem gerenciar máquinas virtuais"
 
 </br>
 
@@ -290,4 +297,136 @@ Regiões soberanas são instâncias do Azure isoladas da instância principal do
 
 </br>
 
-## Descrever a infraestrutura de gerenciamento do Azure
+## [Descrever a infraestrutura de gerenciamento do Azure]("https://learn.microsoft.com/pt-br/training/modules/describe-core-architectural-components-of-azure/6-describe-azure-management-infrastructure")
+
+Recurso é qualquer coisa que você criar, provisionar, implantar etc. Exe:VMs, redes virtuais, bancos de dados, serviços cognitivos etc.
+
+Grupos de recursos são agrupamentos de recursos no Azure. Ações aplicadas em um grupo afetam todos os recursos. Não há regras rígidas para uso.
+
+Grupos de recursos:
+
+- É um agrupamento de recursos.
+- Permite aplicar ações a todos os recursos de forma conveniente.
+- Recursos não podem ser aninhados dentro de grupos de recursos.
+- Não há regras rígidas para usar grupos de recursos.
+- As regras são aplicadas ao grupo e não a recursos.
+
+## Assinaturas do Azure
+
+Uma assinatura do Azure é uma identidade no Azure AD (Azure Active Directory).
+Em uma conta com várias assinaturas, pode-se configurar diferentes modelos de cobrança e aplicar diferentes políticas de gerenciamento de acesso e definir limites em relação a produtos, serviços e recursos do Azure.
+Você pode usar dois tipos de limites de assinatura:
+
+- Limite de cobrança: Esse tipo de assinatura determina como uma conta do Azure é cobrada pelo uso do Azure. Você pode criar várias assinaturas para atender a diferentes tipos de requisitos de cobrança. O Azure gera relatórios de cobrança e faturas separados para cada assinatura, para que você possa organizar e gerenciar os custos.
+
+- Limite de controle de acesso: O Azure aplica políticas de gerenciamento de acesso no nível da assinatura, e você pode criar assinaturas separadas para refletir diferentes estruturas organizacionais. Um exemplo disso é que, em um negócio, você tem diferentes departamentos aos quais aplica políticas de assinatura do Azure distintas. Esse modelo de cobrança permite gerenciar e controlar o acesso aos recursos que os usuários provisionam com assinaturas específicas.
+
+É possivel criar assinaturas adicionais para separar: Ambientes, estruturas organizacionais e cobrança.
+
+## Grupos de gerenciamento do Azure (Grupo de Assinaturas)
+
+O uso de grupos de gerenciamento no Azure organiza assinaturas e recursos de forma eficiente, especialmente em casos com muitos aplicativos e equipes. Os grupos fornecem um nível de escopo acima das assinaturas e permitem aplicar condições de governança a várias assinaturas. Os grupos de gerenciamento podem ser aninhados, e todas as assinaturas em um grupo herdam as condições aplicadas a ele.
+
+- 10.000 grupos de gerenciamento podem ter suporte em um único diretório.
+- Uma árvore do grupo de gerenciamento pode dar suporte a até seis níveis de profundidade. Esse limite não inclui o nível raiz nem o nível da assinatura.
+- Cada grupo de gerenciamento e assinatura podem dar suporte a somente um pai.
+
+## Verificar seus conhecimentos
+
+</br>
+<p align="center">
+    <img src="img/ex4.png" data-canonical-src="img/ex4.png" width="100%" height="auto"/> 
+</p>
+</br>
+
+## [Descrever os serviços de computação e rede do Azure]("https://learn.microsoft.com/pt-br/training/modules/describe-azure-compute-networking-services/")
+
+### Conjuntos de disponibilidade da máquina virtual
+
+Conjuntos de disponibilidade de máquinas virtuais garantem que as VMs tenham conectividade de rede e energia variadas para impedir que todas as VMs caiam em uma falha. Eles agrupam VMs em domínios de atualização e falha, permitindo que você aplique atualizações sabendo que apenas um agrupamento estará offline por vez. Por padrão, um conjunto de disponibilidade dividirá suas VMs em até três domínios de falha para proteção contra falhas de energia física ou de rede.
+
+- Não há custo adicional para configurar um conjunto de disponibilidade, apenas pelas instâncias de VM criadas.
+
+### Exemplos de quando usar VMs
+
+As VMs são úteis em várias situações, como testes e desenvolvimento, execução de aplicativos na nuvem, extensão do datacenter para a nuvem e recuperação de desastres. Elas permitem que você crie diferentes configurações de sistema operacional e aplicativos rapidamente e pode economizar recursos, desligando VMs quando não são necessárias e iniciando-as rapidamente quando a demanda aumenta. Em caso de falha do datacenter primário, você pode criar VMs em execução no Azure para executar seus aplicativos críticos e desligá-los quando o datacenter primário estiver operacional novamente.
+
+### Descrever a Área de Trabalho Virtual do Azure
+
+Azure Virtual Desktop é um serviço de virtualização de desktop e aplicativos na nuvem, permitindo acesso remoto a sistemas Windows e aplicativos. Os aplicativos ficam separados do hardware local, executa aplicativos e dados na nuvem, reduzindo o risco de deixar informações confidenciais em dispositivos pessoais. As sessões de usuário são isoladas em ambientes de sessão única ou multissessão do Windows 10 ou Windows 11 Enterprise.
+
+### Azure Functions
+
+Azure Functions é uma opção de computação sem servidor controlada por eventos, sem necessidade de manutenção de VMs ou contêineres em execução constante, só é cobradp pelo tempo de CPU usado durante a execução. Podem ser sem estado ou com estado (Durable Functions) e são um componente chave da computação sem servidor, permitindo flexibilidade para gerenciar o dimensionamento, executar em redes virtuais e isolar completamente as funções.
+
+- funções com estado (`Durable Functions`) do Azure são uma ferramenta poderosa para criar fluxos de trabalho de longa duração e com estado,, onde cada etapa pode ser uma função separada simplificando o gerenciamento de estado, e a coordenação de tarefas assíncronas em aplicativos.
+
+- funções sem estado são reiniciam sempre que são acionadas.
+
+## [Descrever as opções de hospedagem de aplicativo]("https://learn.microsoft.com/pt-br/training/modules/describe-azure-compute-networking-services/7-describe-application-hosting-options")
+
+VM (máquina virtual) ou contêineres e pode utilizar `O Serviço de Aplicativo do Azure` permite que você se concentre em criar e manter seu aplicativo, e o Azure se concentra em manter o ambiente em funcionamento oferecemdo dimensionamento automático e alta disponibilidade.
+
+### Tipos de serviços de aplicativos
+
+Serviço de Aplicativo a escolha ideal para hospedar aplicativos voltados para a Web.
+
+Pode hospedar:
+
+- Aplicativos Web
+- Aplicativos de API
+- WebJobs
+- Aplicativos móveis
+
+O Serviço de Aplicativo cuida da maioria das decisões de infraestrutura:
+
+- A implantação e o gerenciamento são integrados à plataforma.
+- Pontos de extremidade podem ser protegidos.
+- Sites podem ser dimensionados rapidamente para lidar com cargas de alto tráfego.
+- O balanceamento de carga interno e o gerenciador de tráfego fornecem alta disponibilidade.
+
+### Aplicativos de API
+
+Aplicativos de API permitem criar APIs Web baseadas em REST usando a linguagem e a estrutura que você desejar.
+
+- Suporte completo ao Swagger e a capacidade de empacotar e publicar sua API no Azure Marketplace.
+- Os aplicativos de API podem ser consumidos por qualquer cliente baseado em HTTP ou HTTPS.
+
+### Aplicativos de API
+
+O WebJobs geralmente é usado para executar um script, para executar tarefas em segundo plano como parte da lógica do aplicativo.
+
+### Aplicativos móveis
+
+Use o recurso Aplicativos Móveis do Serviço de Aplicativo para criar rapidamente um back-end para aplicativos iOS e Android. Com apenas algumas ações no portal do Azure, você pode:
+
+- Armazenar dados de aplicativo móvel em um Banco de Dados SQL baseado em nuvem.
+- Autenticar os clientes em relação a provedores sociais comuns, como MSA, Google, Twitter e Facebook.
+- Enviar notificações por push.
+- Executar a lógica personalizada de back-end no C# ou Node.js.
+
+No lado do aplicativo móvel, há suporte do SDK para aplicativos nativos para iOS, Android, Xamarin e React.
+
+## [Descrever a Rede Virtual do Azure]("https://learn.microsoft.com/pt-br/training/modules/describe-azure-compute-networking-services/8-virtual-network")
+
+As redes virtuais e sub-redes virtuais permitem que recursos, como VMs, aplicativos Web e bancos de dados, comuniquem-se uns com os outros, com usuários na Internet e com computadores cliente locais. Você pode pensar em uma rede como uma extensão de sua rede local com recursos que vinculam outros recursos.
+
+As redes virtuais do Azure
+
+- Oferecem as seguintes funcionalidades de rede essenciais:
+  - Isolamento e segmentação
+  - Comunicação pela Internet
+  - Comunicação entre recursos do Azure
+  - Comunicação com os recursos locais
+  - Rotear tráfego de rede
+  - Filtrar tráfego de rede
+  - Conectar redes virtuais
+- Habilitar a comunicação
+  - Pontos de extremidade públicos: têm um endereço IP público.
+  - Pontos de extremidade privados: são endereços IP privados dentro de uma rede virtual.
+
+### Isolamento e segmentação
+
+A rede virtual do Azure permite criar várias redes virtuais isoladas. Quando você configura uma rede virtual, define um espaço de endereço IP privado usando intervalos de endereços IP públicos ou privados. O intervalo de IP existe somente na rede virtual e não é roteável pela Internet. Você pode dividir esse espaço de endereços IP em sub-redes e alocar parte do espaço de endereço definido para cada sub-rede nomeada.
+
+Para a resolução de nomes, é possível usar o serviço de resolução de nomes interno do Azure. Você também pode configurar a rede virtual para usar um servidor DNS interno ou externo.
